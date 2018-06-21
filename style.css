@@ -34,7 +34,7 @@ section, footer, header, aside, nav{
 --------------------------*/
 
 .bar{
-    background-color:#002145;
+    background-color: #ffdf91;
 
     //background-image:-webkit-linear-gradient(top, #5c9bb7, #5392ad);
     //background-image:-moz-linear-gradient(top, #5c9bb7, #5392ad);
@@ -84,6 +84,7 @@ section, footer, header, aside, nav{
     padding: 10px;
     width: 60px;
     height: 60px;
+    object-fit: cover;
 }
 table{
     list-style: none;
@@ -98,10 +99,11 @@ table tr{
     overflow: hidden;
 }
 table tr img{
-    width:60px;
-    height:60px;
     float:left;
     border:none;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
 }
 table tr td{
     //border: 1px solid black;

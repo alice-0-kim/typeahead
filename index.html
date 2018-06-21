@@ -3,8 +3,8 @@
 	<head>
 		<!-- development version, includes helpful console warnings -->
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script type='text/javascript' src='dd.js'></script>
-		<link rel="stylesheet" href="custom.css">
+    <script type='text/javascript' src='dropdown.js'></script>
+		<link rel="stylesheet" href="style.css">
   </head>
   <body>
     <form id="main" v-cloak>
@@ -33,7 +33,7 @@
         <tr v-for="article in articles">
           <td>
             <a v-bind:href="article.data_source">
-              <img v-bind:src="article.image" />
+              <img v-bind:src="article.image" >
             </a>
           </td>
           <td>{{article.term}}</td>
@@ -42,6 +42,6 @@
         </tr>
       </table>
     </form>
-    <script type='text/javascript' src='custom.js'></script>
+    <script type='text/javascript' src='typeahead.js'></script>
   </body>
 </html>

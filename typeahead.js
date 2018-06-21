@@ -19,7 +19,7 @@ var demo = new Vue({
 		"acronym": "-",
 		"synonym": "-",
 		"highlighted": "",
-		"image": "ubc.jpg"
+		"image": "dog.jpg"
 	},
 	{
 		"term": "Banana",
@@ -33,7 +33,7 @@ var demo = new Vue({
 		"acronym": "-",
 		"synonym": "-",
 		"highlighted": "",
-		"image": "ubc.jpg"
+		"image": "dog.jpg"
 	},
 	{
 		"term": "Cucumber",
@@ -47,7 +47,7 @@ var demo = new Vue({
 		"acronym": "-",
 		"synonym": "-",
 		"highlighted": "",
-		"image": "ubc.jpg"
+		"image": "dog.jpg"
 	},
 	{
 		"term": "Drupal",
@@ -61,7 +61,7 @@ var demo = new Vue({
 		"acronym": "-",
 		"synonym": "-",
 		"highlighted": "",
-		"image": "ubc.jpg"
+		"image": "dog.jpg"
 	},
 	{
 		"term": "Europe",
@@ -75,7 +75,7 @@ var demo = new Vue({
 		"acronym": "-",
 		"synonym": "-",
 		"highlighted": "",	
-		"image": "ubc.jpg"
+		"image": "dog.jpg"
 	},
 	{
 		"term": "Faculty",
@@ -89,7 +89,7 @@ var demo = new Vue({
 		"acronym": "-",
 		"synonym": "-",
 		"highlighted": "",
-		"image": "ubc.jpg"
+		"image": "dog.jpg"
 	},
 	{
 		"term": "Great",
@@ -103,7 +103,7 @@ var demo = new Vue({
 		"acronym": "-",
 		"synonym": "-",
 		"highlighted": "",
-		"image": "ubc.jpg"
+		"image": "dog.jpg"
 	}]
 
     },
