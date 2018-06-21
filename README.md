@@ -9,3 +9,5 @@
 git clone https://github.com/alice-0-kim/typeahead.git
 ```
 Open `index.html` on the web browser to see a demo of the project.
+
+All suggestions/contributions are welcomed :grinning:
