@@ -1,7 +1,8 @@
 # typeahead :speech_balloon:
 > A simple `vue.js` project
 
-![demo](https://github.com/alice-0-kim/typeahead/blob/master/ubc.jpg)
+![demo](https://github.com/alice-0-kim/typeahead/blob/master/Screen%20Shot%202018-06-21%20at%204.14.01%20PM.png)
+![demo](https://github.com/alice-0-kim/typeahead/blob/master/Screen%20Shot%202018-06-21%20at%204.14.37%20PM.png)
 
 ## Demo
 ```
