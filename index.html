@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- development version, includes helpful console warnings -->
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type='text/javascript' src='dd.js'></script>
+		<link rel="stylesheet" href="custom.css">
+  </head>
+  <body>
+    <form id="main" v-cloak>
+      <div class="bar">
+        <!-- Create a binding between the searchString model and the text field -->
+        <input id="search" type="text" v-model="searchString" placeholder="Enter your search terms" />
+        <div class="typeahead">
+          <div v-for="article in filteredArticles">
+            <p>
+              <a v-bind:href="article.data_source">
+                <img v-bind:src="article.image" />
+              </a>
+            </p>
+            <p>{{article.term}}</p>
+            <p>{{article.highlighted}}</p>
+          </div>
+        </div>
+      </div>
+      <table>
+        <tr>
+          <th>Image</th>
+          <th>Term</th>
+          <th>Definition</th>
+          <th>Example</th>
+        </tr>
+        <tr v-for="article in articles">
+          <td>
+            <a v-bind:href="article.data_source">
+              <img v-bind:src="article.image" />
+            </a>
+          </td>
+          <td>{{article.term}}</td>
+          <td>{{article.definition}}</td>
+          <td>{{article.example}}</td>
+        </tr>
+      </table>
+    </form>
+    <script type='text/javascript' src='custom.js'></script>
+  </body>
+</html>
