@@ -67,9 +67,7 @@ section, footer, header, aside, nav{
     text-indent: 40px;
 }
 .typeahead {
-    border-bottom: 1px solid black;
     width: 600px;
-    //height: 200px;
     position: absolute;
     background: white;
 }
@@ -85,6 +83,22 @@ section, footer, header, aside, nav{
     width: 60px;
     height: 60px;
     object-fit: cover;
+}
+.typeahead p span {
+    border-bottom: 1px solid red;
+}
+.typeahead p:nth-child(2) {
+    width: 70px;
+}
+.typeahead p:nth-child(3) {
+    width: 1px;
+    display: block;
+    background: lightgrey;
+    margin: 5px 0;
+    padding: 0px;
+}
+.typeahead p:nth-child(4) {
+    max-width: 66%;
 }
 table{
     list-style: none;
@@ -106,13 +120,11 @@ table tr img{
     object-fit: cover;
 }
 table tr td{
-    //border: 1px solid black;
     font-weight: normal;
     color:#000;
     padding: 10px;
 }
 table tr th{
-    //border: 1px solid black;
     text-align: center;
     font-weight: bold;
     color:#000;

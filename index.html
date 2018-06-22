@@ -10,7 +10,7 @@
     <form id="main" v-cloak>
       <div class="bar">
         <!-- Create a binding between the searchString model and the text field -->
-        <input id="search" type="text" v-model="searchString" placeholder="Enter your search terms" />
+        <input id="search" type="text" v-model="searchString" placeholder="Enter your search terms" autocomplete="off"/>
         <div class="typeahead">
           <div v-for="article in filteredArticles">
             <p>
@@ -18,8 +18,9 @@
                 <img v-bind:src="article.image" />
               </a>
             </p>
-            <p>{{article.term}}</p>
-            <p>{{article.highlighted}}</p>
+            <p v-html="article.term"></p>
+            <p></p>
+            <p v-html="article.highlighted"></p>
           </div>
         </div>
       </div>
@@ -36,7 +37,7 @@
               <img v-bind:src="article.image" >
             </a>
           </td>
-          <td>{{article.term}}</td>
+          <td v-html="article.term"></td>
           <td>{{article.definition}}</td>
           <td>{{article.example}}</td>
         </tr>
