@@ -2,84 +2,84 @@ var demo = new Vue({
     el: '#main',
     data: {
         searchString: "",
+        isActive: false,
 
         // The data model. These items would normally be requested via AJAX,
         // but are hardcoded here for simplicity.
 
         articles: [
-	{
-		"term": "abstraction",
-		"definition": "A simplified representation of something more complex.",
-		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
-		"example": "Apples are red.",
-		"highlighted": "",
-		"isFirst": false,
-		"image": "dog.jpg"
-	},
-	{
-		"term": "binary",
-		"definition": "A way of representing information using only two options.",
-		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
-		"example": "Apples are red.",
-		"highlighted": "",
-		"isFirst": false,
-		"image": "dog.jpg"
-	},
-	{
-		"term": "byte",
-		"definition": "The most common fundamental unit of digital data eg. Kilobyte, Megabyte, etc. A single byte is 8 bits-worth of data.",
-		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
-		"example": "Apples are red.",
-		"highlighted": "",
-		"isFirst": false,
-		"image": "dog.jpg"
-	},
-	{
-		"term": "domain name service",
-		"definition": "DNS; The service that translates URLs to IP addresses.",
-		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
-		"example": "Apples are red.",
-		"highlighted": "",
-		"isFirst": false,
-		"image": "dog.jpg"
-	},
-	{
-		"term": "internet",
-		"definition": "A group of computers and servers that are connected to each other.",
-		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
-		"example": "Apples are red.",
-		"highlighted": "",
-		"isFirst": false,
-		"image": "dog.jpg"
-	},
-	{
-		"term": "pixel",
-		"definition": "Short for \"picture element\", the fundamental unit of a digital image, typically a tiny square or dot that contains a single point of color of a larger image.",
-		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
-		"example": "Apples are red.",
-		"highlighted": "",
-		"isFirst": false,
-		"image": "dog.jpg"
-	},
-	{
-		"term": "variable",
-		"definition": "A placeholder for a piece of information that can change.",
-		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
-		"example": "Apples are red.",
-		"highlighted": "",
-		"isFirst": false,
-		"image": "dog.jpg"
-	},
-	{
-		"term": "website",
-		"definition": "A collection of interlinked web pages on the World Wide Web.",
-		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
-		"example": "Apples are red.",
-		"highlighted": "",
-		"isFirst": false,
-		"image": "dog.jpg"
-	}]
-
+				{
+					"term": "abstraction",
+					"definition": "A simplified representation of something more complex.",
+					"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
+					"example": "Apples are red.",
+					"highlighted": "",
+					"isFirst": false,
+					"image": "dog.jpg"
+				},
+				{
+					"term": "binary",
+					"definition": "A way of representing information using only two options.",
+					"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
+					"example": "Apples are red.",
+					"highlighted": "",
+					"isFirst": false,
+					"image": "dog.jpg"
+				},
+				{
+					"term": "byte",
+					"definition": "The most common fundamental unit of digital data eg. Kilobyte, Megabyte, etc. A single byte is 8 bits-worth of data.",
+					"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
+					"example": "Apples are red.",
+					"highlighted": "",
+					"isFirst": false,
+					"image": "dog.jpg"
+				},
+				{
+					"term": "domain name service",
+					"definition": "DNS; The service that translates URLs to IP addresses.",
+					"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
+					"example": "Apples are red.",
+					"highlighted": "",
+					"isFirst": false,
+					"image": "dog.jpg"
+				},
+				{
+					"term": "internet",
+					"definition": "A group of computers and servers that are connected to each other.",
+					"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
+					"example": "Apples are red.",
+					"highlighted": "",
+					"isFirst": false,
+					"image": "dog.jpg"
+				},
+				{
+					"term": "pixel",
+					"definition": "Short for \"picture element\", the fundamental unit of a digital image, typically a tiny square or dot that contains a single point of color of a larger image.",
+					"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
+					"example": "Apples are red.",
+					"highlighted": "",
+					"isFirst": false,
+					"image": "dog.jpg"
+				},
+				{
+					"term": "variable",
+					"definition": "A placeholder for a piece of information that can change.",
+					"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
+					"example": "Apples are red.",
+					"highlighted": "",
+					"isFirst": false,
+					"image": "dog.jpg"
+				},
+				{
+					"term": "website",
+					"definition": "A collection of interlinked web pages on the World Wide Web.",
+					"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
+					"example": "Apples are red.",
+					"highlighted": "",
+					"isFirst": false,
+					"image": "dog.jpg"
+				}]
     },
 //     created () {
 // 				fetch('https://api.myjson.com/bins/1crl2y')
@@ -156,6 +156,9 @@ var demo = new Vue({
                 		return item;
                 }
             })
+            if (articles_array.length > 0){
+            		isActive = true;
+            }
             var firstLetter = '';
             for (var article of articles_array) {
             		var currentLetter = article.term.toLowerCase().substring(0,1);

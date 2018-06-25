@@ -71,6 +71,9 @@ section, footer, header, aside, nav{
     position: absolute;
     background: white;
 }
+.typeahead.active {
+    display: block;
+}
 .typeahead div {
     display: flex;
     border-bottom: 1px solid lightgray;

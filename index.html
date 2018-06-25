@@ -3,7 +3,6 @@
 	<head>
 		<!-- development version, includes helpful console warnings -->
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script type='text/javascript' src='dropdown.js'></script>
 		<link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -11,7 +10,7 @@
       <div class="bar">
         <!-- Create a binding between the searchString model and the text field -->
         <input id="search" type="text" v-model="searchString" placeholder="Enter your search terms" autocomplete="off"/>
-        <div class="typeahead">
+        <div v-bind:class="{ active: isActive }" class="typeahead">
           <template v-for="article in filteredArticles">
             <template v-if="article.isFirst">
               <div class="typeahead-index">{{article.term.substring(0, 1).toUpperCase()}}</div>
