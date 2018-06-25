@@ -40,7 +40,7 @@ var demo = new Vue({
 		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
 		"example": "Apples are red.",
 		"highlighted": "",
-		"isFirst": true,
+		"isFirst": false,
 		"image": "dog.jpg"
 	},
 	{
@@ -156,6 +156,16 @@ var demo = new Vue({
                 		return item;
                 }
             })
+            var firstLetter = '';
+            for (var article of articles_array) {
+            		var currentLetter = article.term.toLowerCase().substring(0,1);
+            		if (currentLetter !== firstLetter) {
+            				article.isFirst = true;
+            				firstLetter = currentLetter;
+            		} else {
+            				article.isFirst = false;
+            		}
+            }
             // Return an array with the filtered data.
             return articles_array;
         }
