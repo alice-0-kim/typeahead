@@ -14,13 +14,16 @@
         <div class="typeahead">
           <div v-for="article in filteredArticles">
             <p>
-              <a v-bind:href="article.data_source">
+              <a v-bind:href="article.definition_source">
                 <img v-bind:src="article.image" />
               </a>
             </p>
             <p v-html="article.term"></p>
             <p></p>
             <p v-html="article.highlighted"></p>
+            <template v-if="article.isLast">
+              <div class="typeahead-index"></div>
+            </template>
           </div>
         </div>
       </div>
@@ -33,7 +36,7 @@
         </tr>
         <tr v-for="article in articles">
           <td>
-            <a v-bind:href="article.data_source">
+            <a v-bind:href="article.definition_source">
               <img v-bind:src="article.image" >
             </a>
           </td>
