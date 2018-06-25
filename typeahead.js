@@ -126,24 +126,26 @@ var demo = new Vue({
                 		var start = i < 3 ? 0 : i - 3;
                 		var end   = w.length - i < 3 ? w.length : i + 3;
                 		var trailingStart = start === 0 ? '' : '...';
-                		var trailingEnd   = end   === w.length - 1 ? '' : '...';
+                		var trailingEnd   = end   === w.length ? '' : '...';
 
                 		item.highlighted = trailingStart + w.slice(start,i).join(' ') + ' ' + w[i].substr(0, w[i].toLowerCase().indexOf(searchString)) + '<span>' + w[i].substr(w[i].toLowerCase().indexOf(searchString), searchString.length) + '</span>' + w[i].substr(w[i].toLowerCase().indexOf(searchString) + searchString.length, w[i].length) + ' ' + w.slice(i + 1,end).join(' ') + trailingEnd;
                 		return item;
                 } else if (indexOfDefn !== -1) {
 										// Case 3: a definition of a term includes the search string, and search string CONTAINS white spaces.
                 		var w = item.definition.split(' ');
+                		console.log(w.toString())
                 		var startWord = w.findIndex(function(word, index) {
-                				return w.slice(0, index + 1).join(' ').length - 1 >= indexOfDefn;
+												return w.slice(0, index + 1).join(' ').length >= indexOfDefn;
                 		});
                 		var endWord = w.findIndex(function(word, index) {
-                				return w.slice(0, index + 1).join(' ').length - 1 >= indexOfDefn + searchString.length;
+                				return w.slice(0, index + 1).join(' ').length >= indexOfDefn + searchString.length;
                 		});
                 		
+                		console.log(endWord)
                 		var start = startWord < 3 ? 0 : startWord - 3;
                 		var end   = w.length - endWord < 3 ? w.length : endWord + 3;
                 		var trailingStart = start === 0 ? '' : '...';
-                		var trailingEnd   = end   === w.length - 1 ? '' : '...';
+                		var trailingEnd   = end   === w.length ? '' : '...';
                 		
                 		var indexOfPrePhrase = w[startWord].toLowerCase().indexOf(searchString.split(' ')[0]);
                 		var indexOfPostPhrase = w[endWord].toLowerCase().indexOf(searchString.split(' ')[searchString.split(' ').length - 1]);
