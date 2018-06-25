@@ -100,8 +100,7 @@ section, footer, header, aside, nav{
 .typeahead p:nth-child(4) {
     max-width: 66%;
 }
-.typeahead-index:after {
-    content: "B";
+.typeahead-index {
     display: block;
     padding: 5px;
     padding-left: 10px;

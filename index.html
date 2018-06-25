@@ -12,19 +12,21 @@
         <!-- Create a binding between the searchString model and the text field -->
         <input id="search" type="text" v-model="searchString" placeholder="Enter your search terms" autocomplete="off"/>
         <div class="typeahead">
-          <div v-for="article in filteredArticles">
-            <p>
-              <a v-bind:href="article.definition_source">
-                <img v-bind:src="article.image" />
-              </a>
-            </p>
-            <p v-html="article.term"></p>
-            <p></p>
-            <p v-html="article.highlighted"></p>
-            <template v-if="article.isLast">
-              <div class="typeahead-index"></div>
+          <template v-for="article in filteredArticles">
+            <template v-if="article.isFirst">
+              <div class="typeahead-index">{{article.term.substring(0, 1).toUpperCase()}}</div>
             </template>
-          </div>
+            <div>
+              <p>
+                <a v-bind:href="article.definition_source">
+                  <img v-bind:src="article.image" />
+                </a>
+              </p>
+              <p v-html="article.term"></p>
+              <p></p>
+              <p v-html="article.highlighted"></p>
+            </div>
+          </template>
         </div>
       </div>
       <table>

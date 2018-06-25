@@ -13,6 +13,7 @@ var demo = new Vue({
 		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
 		"example": "Apples are red.",
 		"highlighted": "",
+		"isFirst": false,
 		"image": "dog.jpg"
 	},
 	{
@@ -21,6 +22,7 @@ var demo = new Vue({
 		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
 		"example": "Apples are red.",
 		"highlighted": "",
+		"isFirst": false,
 		"image": "dog.jpg"
 	},
 	{
@@ -29,6 +31,7 @@ var demo = new Vue({
 		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
 		"example": "Apples are red.",
 		"highlighted": "",
+		"isFirst": false,
 		"image": "dog.jpg"
 	},
 	{
@@ -37,6 +40,7 @@ var demo = new Vue({
 		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
 		"example": "Apples are red.",
 		"highlighted": "",
+		"isFirst": true,
 		"image": "dog.jpg"
 	},
 	{
@@ -45,6 +49,7 @@ var demo = new Vue({
 		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
 		"example": "Apples are red.",
 		"highlighted": "",
+		"isFirst": false,
 		"image": "dog.jpg"
 	},
 	{
@@ -53,6 +58,7 @@ var demo = new Vue({
 		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
 		"example": "Apples are red.",
 		"highlighted": "",
+		"isFirst": false,
 		"image": "dog.jpg"
 	},
 	{
@@ -61,6 +67,7 @@ var demo = new Vue({
 		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
 		"example": "Apples are red.",
 		"highlighted": "",
+		"isFirst": false,
 		"image": "dog.jpg"
 	},
 	{
@@ -69,6 +76,7 @@ var demo = new Vue({
 		"definition_source": "https://www.google.ca/search?q=apple&oq=apple&aqs=chrome..69i57j69i60l3j69i65l2.1158j1j7&sourceid=chrome&ie=UTF-8",
 		"example": "Apples are red.",
 		"highlighted": "",
+		"isFirst": false,
 		"image": "dog.jpg"
 	}]
 
@@ -83,6 +91,7 @@ var demo = new Vue({
     computed: {
         // A computed property that holds only those articles that match the searchString.
         filteredArticles: function () {
+        		// Sort the array alphabetically.
             var articles_array = this.articles.sort(function(a, b) {
 								if(a.term < b.term) return -1;
 								if(a.term > b.term) return 1;
@@ -93,7 +102,7 @@ var demo = new Vue({
             if(!searchString){
                 return [];
             }
-
+        
             searchString = searchString.trim().toLowerCase();
 
             articles_array = articles_array.filter(function(item){
@@ -103,10 +112,11 @@ var demo = new Vue({
             		var indexOfDefn = item.definition.toLowerCase().indexOf(searchString);
             		
                 if(indexOfTerm === 0) {
-                		//item.term = '<span>' + item.term.substr(indexOfTerm, searchString.length) + '</span>' + item.term.substr(searchString.length, termToLowercase.length - searchString.length);
+										// Case 1: a term starts with the search string.
                 		item.highlighted = item.definition;
                     return item;
                 } else if (indexOfDefn !== -1 && searchString.indexOf(' ') === -1) {
+										// Case 2: a definition of a term includes the search string, and search string DOES NOT CONTAIN white spaces.
                 		console.log(searchString + ' at ' + indexOfDefn);
                 		var w = item.definition.split(' ');
                 		var i = w.findIndex(function(word) {
@@ -121,6 +131,7 @@ var demo = new Vue({
                 		item.highlighted = trailingStart + w.slice(start,i).join(' ') + ' ' + w[i].substr(0, w[i].toLowerCase().indexOf(searchString)) + '<span>' + w[i].substr(w[i].toLowerCase().indexOf(searchString), searchString.length) + '</span>' + w[i].substr(w[i].toLowerCase().indexOf(searchString) + searchString.length, w[i].length) + ' ' + w.slice(i + 1,end).join(' ') + trailingEnd;
                 		return item;
                 } else if (indexOfDefn !== -1) {
+										// Case 3: a definition of a term includes the search string, and search string CONTAINS white spaces.
                 		var w = item.definition.split(' ');
                 		var startWord = w.findIndex(function(word, index) {
                 				return w.slice(0, index + 1).join(' ').length - 1 >= indexOfDefn;
@@ -129,32 +140,23 @@ var demo = new Vue({
                 				return w.slice(0, index + 1).join(' ').length - 1 >= indexOfDefn + searchString.length;
                 		});
                 		
-                		console.log(startWord)
-                		console.log(endWord)
-                		
                 		var start = startWord < 3 ? 0 : startWord - 3;
                 		var end   = w.length - endWord < 3 ? w.length : endWord + 3;
                 		var trailingStart = start === 0 ? '' : '...';
                 		var trailingEnd   = end   === w.length - 1 ? '' : '...';
-
-                		var prePhrase = w[startWord].substr(0, w[startWord].toLowerCase().indexOf(searchString.split(' ')[0]));
-                		var phrase = searchString;
-                		console.log(">> " + w[endWord].toLowerCase().indexOf(searchString.split(' ')[searchString.split(' ').length - 1]));
-
+                		
+                		var indexOfPrePhrase = w[startWord].toLowerCase().indexOf(searchString.split(' ')[0]);
                 		var indexOfPostPhrase = w[endWord].toLowerCase().indexOf(searchString.split(' ')[searchString.split(' ').length - 1]);
                 		
+                		var prePhrase = w[startWord].substr(0, indexOfPrePhrase);
+                		var phrase = item.definition.substr(indexOfDefn, searchString.length);
                 		var postPhrase = indexOfPostPhrase === -1 ? ' ' + w[endWord] : w[endWord].substr(indexOfPostPhrase + searchString.split(' ')[searchString.split(' ').length - 1].length, w[endWord].length);
-                		
-                		console.log(prePhrase)
-                		console.log(phrase)
-                		console.log(postPhrase)
                 		                		
                 		item.highlighted = trailingStart + w.slice(start, startWord).join(' ') + ' ' + prePhrase + '<span>' + phrase + '</span>' + postPhrase + ' ' + w.slice(endWord + 1, end).join(' ') + trailingEnd;
                 		return item;
                 }
             })
             // Return an array with the filtered data.
-            //console.log(JSON.stringify(articles_array))
             return articles_array;
         }
     }
