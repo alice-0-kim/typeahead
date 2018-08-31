@@ -6,47 +6,94 @@
 		<link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <form id="main" v-cloak>
-      <div class="bar">
-        <!-- Create a binding between the searchString model and the text field -->
-        <input id="search" type="text" v-model="searchString" placeholder="Enter your search terms" autocomplete="off"/>
-        <div v-bind:class="{ active: isActive }" class="typeahead">
-          <template v-for="article in filteredArticles">
-            <template v-if="article.isFirst">
-              <div class="typeahead-index">{{article.term.substring(0, 1).toUpperCase()}}</div>
-            </template>
-            <div>
-              <p>
-                <a v-bind:href="article.definition_source">
-                  <img v-bind:src="article.image" />
-                </a>
-              </p>
-              <p v-html="article.term"></p>
-              <p></p>
-              <p v-html="article.highlighted"></p>
+        <form id="main" v-cloak>
+            <div class="filter">
+                <div class="box" @click="filterByTerm($event)">Search Term</div>
+                <div class="box" @click="filterByLetter($event)">A - Z Listing</div>
             </div>
-          </template>
-        </div>
-      </div>
-      <table>
-        <tr>
-          <th>Image</th>
-          <th>Term</th>
-          <th>Definition</th>
-          <th>Example</th>
-        </tr>
-        <tr v-for="article in articles">
-          <td>
-            <a v-bind:href="article.definition_source">
-              <img v-bind:src="article.image" >
-            </a>
-          </td>
-          <td v-html="article.term"></td>
-          <td>{{article.definition}}</td>
-          <td>{{article.example}}</td>
-        </tr>
-      </table>
-    </form>
+            <div id="term" class="bar">
+                <!-- Create a binding between the searchString model and the text field -->
+                <input id="search" type="text" v-model="searchString" placeholder="Enter your search terms" autocomplete="off"/>
+                <div v-bind:class="{ active: isActive }" class="typeahead">
+                    <template v-for="content in autocompleteContents">
+                        <template v-if="content.isFirst">
+                            <div class="typeahead-index">{{ content.term | firstLetter }}</div>
+                        </template>
+                        <a href="#" target="_blank">
+                            <div class="typeahead-item">
+                                <p v-html="content.term"></p>
+                                <p v-html="content.highlighted"></p>
+                            </div>
+                        </a>
+                    </template>
+                    <div @click="contents = autocompleteContents; isActive = false; searchString = '';" v-if="autocompleteContents.length != 0" style="cursor:pointer;"><p style="margin:15px;text-align:right;width:100%;">See all results</p></div>
+                </div>
+            </div>
+            <div id="letter" class="bar hide">
+                <p>Show an alphabetical listing of the terms.</p>
+                <div @click="updateSearchLetter($event)" v-for="content in filteredContents" v-if="content.isFirst">{{ content.term | firstLetter }}</div>
+                <div @click="resetSearchLetter" class="box">Reset</div>
+            </div>
+
+            <h3>Showing {{ filter }} Terms:</h3> <!-- variable -->
+
+            <label for="community">Filter By:</label>
+            <select name="community" v-model="filter">
+              <option value="All">All</option>
+              <option value="Advancement">Advancement</option>
+              <option value="Finance">Finance</option>
+              <option value="Geospatial and Services">Geospatial and Services</option>
+              <option value="Human Resources">Human Resources</option>
+              <option value="Learner">Learner</option>
+            </select>
+
+            <label for="sort">Sort By:</label>
+            <select name="sort" v-model="sort">
+              <option value="Relevance">Relevance</option>
+              <option value="A - Z">A - Z</option>
+              <option value="Z - A">Z - A</option>
+              <option value="Last modified">Last modified</option>
+              <option value="Classification">Classification</option>
+            </select>
+
+            <div class="vocabulary">
+                <div v-for="content in pageredContents">
+                    <div class="top">
+                        <h3 v-html="content.term"></h3>
+                        <div style="margin-bottom: 10px;">Information Domains &gt; Data Governance Data &gt; Data Governance Glossary</div>
+                        <div><b>Classification: Public</b></div>
+                    </div>
+                    <div class="bottom">
+                        <div>{{ content.definition }}</div>
+                        <br>
+                        <div><b>Business Steward: </b>Jane Doe</div>
+                        <div><b>Group Name: </b>{{ content.class }}</div>
+                        <div><b>Last Updated: </b>{{ content.lastModified | time }}</div>
+                    </div>
+                    <div class="detail off">
+                        <div><b>Status: </b>Accepted</div>
+                        <div><b>Effective start date: </b>2018/07/24</div>
+                        <div><b>Effective end date: </b>2020/07/24</div>
+                        <br>
+                        <div><b>System of record: </b>data_consumer</div>
+                        <div><b>Example/usage: </b>Vivamus at augue eget arcu dictum varius. Venenatis tellus in metus vulputate.</div>
+                        <div><b>Rule/calculation: </b></div>
+                        <div><b>UDM entity/attribute: </b>xxxxx_yyyyy</div>
+                        <div><b>Reference data/enumeration: </b></div>
+                        <div><ul><li>term 1</li><li>term 2</li><li>term 3</li><li>term 4</li></ul></div>
+                        <div><b>Acronym: </b>AS</div>
+                        <div><b>Synonym: </b>Aliquam, Varius, Tortor, Velit</div>
+                        <div><b>University policy: </b> https://universitycounsel.ubc.ca/files/2013/06/policy104.pdf</div>
+                    </div>
+                    <div class="switch box" @click="showToggle($event)">Show more</div>
+                </div>
+            </div>
+            <div class="pagination">
+                <span class="box" href="#" @click="updatePrevious">previous</span>
+                <span class="box" href="#" @click="updatePageNumbers(n)" v-for="n in pageNums">{{ n }}</span>
+                <span class="box" href="#" @click="updateNext">next</span>
+            </div>
+        </form>
     <script type='text/javascript' src='typeahead.js'></script>
   </body>
 </html>
