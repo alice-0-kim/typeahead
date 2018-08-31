@@ -58,15 +58,15 @@ var main = new Vue({
             target.previousElementSibling.classList.toggle("off")
         },
         filterByTerm: function () {
-            var term = document.getElementById("term")
+            var term = this.$refs['term']
             term.classList.remove("hide")
-            var letter = document.getElementById("letter")
+            var letter = this.$refs['letter']
             letter.classList.add("hide")
         },
         filterByLetter: function () {
-            var term = document.getElementById("term")
+            var term = this.$refs['term']
             term.classList.add("hide")
-            var letter = document.getElementById("letter")
+            var letter = this.$refs['letter']
             letter.classList.remove("hide")
         },
         resetSearchLetter: function () {
